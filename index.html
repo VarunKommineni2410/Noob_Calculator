@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NOOB Calculator</title>
+    
+    <style>
+       /* Please Add All The Styles Here in the Style Tag */
+      #h1{
+         color:teal;
+      }
+
+      .maindiv{
+        height: 500px;
+        width: 400px;
+        /* border: 1px solid red; */
+        align-content: center;
+        box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .button-container{
+        /* border: 1px solid black; */
+        height: 300px;
+        padding: 30px;
+        
+      }
+
+      button{
+        width: 60px;   
+        height: 60px;
+        box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, 0.3);
+        margin-right: 10px;
+        margin-left: 10px
+      }
+       
+      #p{
+        font-size: 50px;
+        font-weight: bold;
+        width: 380px;   
+        height: 60px;
+        text-align:center;
+        /* border: 1px solid black; */
+        box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
+      }
+
+       
+       
+       
+    </style>
+  </head>
+  <body>
+     <!--Please Code HTML tags Here in the Body Tag-->
+     <center>
+       <h1 id="h1">NOOB Calculator</h1>
+        <div class="maindiv">
+        <p id="p"></p>
+          
+     <div class="button-container">
+     <button style="font-size: 20px;" id="1">1</button>
+     <button style="font-size: 20px;" id="2">2</button>
+     <button style="font-size: 20px;" id="3">3</button>
+     <button style="font-size: 20px; background-color: black; color: white" id="+">+</button>
+     <br></br>
+     <button style="font-size: 20px;" id="4">4</button>
+     <button style="font-size: 20px;" id="5">5</button>
+     <button style="font-size: 20px;" id="6">6</button>
+     <button style="font-size: 20px; background-color: black; color: white" id="-">-</button>
+     <br></br>
+     <button style="font-size: 20px;" id="7">7</button>
+     <button style="font-size: 20px;" id="8">8</button>
+     <button style="font-size: 20px;" id="9">9</button>
+     <button style="font-size: 20px; background-color: black; color: white" id="x">x</button>
+     <br></br>
+     <button style="font-size: 20px; background-color: red; color: white" id="c">c</button>
+     <button style="font-size: 20px;" id="0">0</button>
+     <button style="font-size: 20px; background-color: black; color: white" id="=">=</button>
+     <button style="font-size: 20px; background-color: black; color: white" id="/">/</button>
+     <!-- <br></br> -->
+     </div>
+     </div>
+     </center>
+     
+
+     
+  </body>
+  <script >
+
+  const p = document.getElementById('p');
+  let expression = "";  // This will hold the current expression
+
+  document.querySelector('.button-container').addEventListener('click', function(event) {
+      if (event.target.tagName === 'BUTTON') {
+        const buttonValue = event.target.textContent;  // Get the text content of the button
+        
+        if (buttonValue === "=") {
+          try {
+            
+            const result = eval(expression);
+            if(result==Infinity || result==NaN){
+              alert("Value Error")
+              return
+            }
+            p.innerHTML = result;
+            expression = result.toString();  // Update the expression with the result for further operations
+          } 
+          catch (error) {
+            alert("Error") // Handle any errors in the expression
+            expression = "";  // Clear the expression
+          }
+        } 
+        else if (buttonValue === "c") {
+          // Clear the expression if "c" is pressed
+          expression = "";
+          p.innerHTML = "";  // Reset display to 0
+        } 
+        else {
+          // Add the value of the button to the ongoing expression
+          expression += buttonValue;
+          p.innerHTML = expression;  // Update the display with the ongoing expression
+        }
+      }
+    });
+
+  </script>
+</html>
